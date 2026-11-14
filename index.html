@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>CHINA AI · Command Center</title>
+<style>
+:root{
+  --bg:#07090c; --surface:#10141a; --surface-2:#171c24; --line:#252c37;
+  --text:#eef1f4; --text-2:#b4bcc8; --muted:#7d8795;
+  --teal:#2dd4bf; --purple:#a78bfa; --amber:#fbbf24; --red:#f87171; --bar:#2dd4bf;
+}
+[data-theme=light]{
+  --bg:#f5f6f8; --surface:#fff; --surface-2:#eef0f4; --line:#d9dde4;
+  --text:#10141a; --text-2:#3d4655; --muted:#6b7686;
+  --teal:#0f9d8c; --purple:#6d4fd6; --amber:#b87900; --red:#d44; --bar:#0f9d8c;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font:15px/1.5 -apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Roboto,sans-serif}
+header{max-width:1180px;margin:0 auto;padding:34px 24px 6px}
+.brand{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+.logo{font-size:12px;letter-spacing:.22em;font-weight:700;color:var(--teal)}
+.ctl{display:flex;gap:10px;align-items:center;font-size:12px;color:var(--muted)}
+.ctl input{width:64px;background:var(--surface);color:var(--text);border:1px solid var(--line);border-radius:6px;padding:4px 6px;font:inherit}
+.btn{background:var(--surface);color:var(--text-2);border:1px solid var(--line);border-radius:6px;padding:5px 10px;cursor:pointer;font:inherit}
+.btn:hover{color:var(--text)}
+.eyebrow{margin-top:18px;font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+h1{margin:6px 0 6px;font-size:38px;letter-spacing:-.025em;line-height:1.1}
+h1 em{font-style:normal;color:var(--teal)}
+.deck{color:var(--text-2);max-width:780px;margin:0}
+nav{position:sticky;top:0;z-index:5;background:color-mix(in srgb,var(--bg) 92%,transparent);backdrop-filter:blur(8px);border-bottom:1px solid var(--line);margin-top:20px}
+.tabs{max-width:1180px;margin:0 auto;padding:0 24px;display:flex;gap:2px;overflow-x:auto}
+.tab{background:none;border:0;color:var(--muted);font:600 13.5px inherit;font-family:inherit;padding:13px 14px;cursor:pointer;border-bottom:2px solid transparent;white-space:nowrap}
+.tab i{font-style:normal;color:var(--teal);margin-right:6px;font-variant-numeric:tabular-nums}
+.tab:hover{color:var(--text)}
+.tab[aria-selected=true]{color:var(--text);border-bottom-color:var(--teal)}
+main{max-width:1180px;margin:0 auto;padding:6px 24px 40px}
+section.panel{display:none}
+section.panel.active{display:block}
+.sec{display:flex;align-items:baseline;gap:12px;margin:40px 0 4px}
+.sec .no{font-size:13px;color:var(--teal);font-weight:700;font-variant-numeric:tabular-nums}
+.sec h2{margin:0;font-size:21px;letter-spacing:-.01em}
+.sec .tl{color:var(--muted);font-size:13px}
+.lede{color:var(--text-2);margin:2px 0 16px;font-size:14px;max-width:820px}
+.grid{display:grid;gap:12px}
+.g3{grid-template-columns:repeat(auto-fill,minmax(340px,1fr))}
+.g4{grid-template-columns:repeat(auto-fill,minmax(230px,1fr))}
+.g2{grid-template-columns:repeat(auto-fit,minmax(340px,1fr))}
+.card,.stat,.chart,.sim{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:16px}
+.card h3,.chart h3,.sim h3{margin:0 0 2px;font-size:16px}
+.card p{margin:6px 0 0;color:var(--text-2);font-size:13.5px}
+.tag{display:inline-block;font-size:11px;padding:2px 8px;border-radius:99px;background:var(--surface-2);color:var(--text-2);border:1px solid var(--line);margin:0 4px 6px 0}
+.tag.pub{color:var(--teal);border-color:color-mix(in srgb,var(--teal) 40%,var(--line))}
+.tag.pre{color:var(--amber);border-color:color-mix(in srgb,var(--amber) 40%,var(--line))}
+.tag.est{color:var(--purple);border-color:color-mix(in srgb,var(--purple) 40%,var(--line))}
+.kv{display:flex;justify-content:space-between;gap:10px;font-size:13px;padding:5px 0;border-top:1px solid var(--line);color:var(--text-2)}
+.kv:first-of-type{margin-top:8px}
+.kv b{color:var(--text);font-weight:600;text-align:right}
+.stat .n{font-size:30px;font-weight:700;letter-spacing:-.02em}
+.stat .l{font-size:13px;color:var(--text-2)}
+.stat .s{font-size:11.5px;color:var(--muted);margin-top:4px}
+.stat.hero{border-color:color-mix(in srgb,var(--teal) 35%,var(--line))}
+table{width:100%;border-collapse:collapse;font-size:13.5px;background:var(--surface);border:1px solid var(--line)}
+th,td{padding:10px 12px;text-align:left;vertical-align:top;border-bottom:1px solid var(--line)}
+th{font-size:11.5px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);background:var(--surface-2)}
+tr:last-child td{border-bottom:0}
+.tw{overflow-x:auto;border-radius:12px;border:1px solid var(--line)}
+.tw table{border:0}
+.win{color:var(--teal);font-weight:700}
+.chart .cap{font-size:12px;color:var(--muted);margin:0 0 12px}
+.bar-row{display:grid;grid-template-columns:150px 1fr 78px;gap:10px;align-items:center;padding:5px 0;font-size:13px}
+.bar-row .name{color:var(--text-2)}
+.bar-row .val{text-align:right;font-variant-numeric:tabular-nums;font-weight:600}
+.track{height:12px;background:var(--surface-2);border-radius:0 6px 6px 0}
+.fill{height:12px;background:var(--bar);border-radius:0 4px 4px 0;transition:width .35s,filter .15s}
+.bar-row:hover .fill{filter:brightness(1.25)}
+.note{font-size:12.5px;color:var(--muted);margin:10px 0 0}
+.call{border-left:3px solid var(--teal);background:var(--surface);padding:12px 16px;border-radius:0 10px 10px 0;color:var(--text-2);font-size:14px;margin:16px 0}
+.call b:first-child{color:var(--teal)}
+.call.catch{border-left-color:var(--amber)}
+.call.catch b:first-child{color:var(--amber)}
+.sim label{display:block;font-size:12.5px;color:var(--text-2);margin:14px 0 4px}
+.sim label span{float:right;color:var(--text);font-weight:600;font-variant-numeric:tabular-nums}
+.sim input[type=range]{width:100%;accent-color:var(--teal)}
+.sim select{width:100%;background:var(--surface-2);color:var(--text);border:1px solid var(--line);border-radius:6px;padding:6px 8px;font:inherit;margin-top:6px}
+.out{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:8px;margin-top:16px}
+.out div{background:var(--surface-2);border-radius:8px;padding:10px 12px}
+.out .o{font-size:21px;font-weight:700;color:var(--teal);font-variant-numeric:tabular-nums}
+.out .k{font-size:11.5px;color:var(--muted)}
+footer{max-width:1180px;margin:0 auto;padding:0 24px 56px;color:var(--muted);font-size:12.5px}
+footer a{color:var(--text-2)}
+footer ul{columns:2;column-gap:32px;padding-left:18px}
+@media(max-width:640px){h1{font-size:28px}.bar-row{grid-template-columns:96px 1fr 64px}footer ul{columns:1}}
+</style>
+</head>
+<body>
+<header>
+  <div class="brand"><span class="logo">CHINA AI / COMMAND CENTER</span>
+    <div class="ctl">
+      <span>FX: ¥ per $</span><input id="fx" type="number" step="0.05" value="6.8" aria-label="RMB per USD">
+      <span>HK$ per $</span><input id="hk" type="number" step="0.05" value="7.8" aria-label="HKD per USD">
+      <button class="btn" id="theme">☀ Light mode</button></div></div>
+  <div class="eyebrow">Market map · All figures in USD · Updated 14 Nov 2026</div>
+  <h1>Who builds, funds, uses and <em>carries</em> China's AI.</h1>
+  <p class="deck">Model labs, capital, consumers, the digital economy and the telecom networks underneath, plus live models you can stress. Local-currency figures are converted at the rate above; change it and every number updates.</p>
+</header>
+<nav><div class="tabs" role="tablist">
+  <button class="tab" role="tab" aria-selected="true" data-t="ai"><i>1</i>Models · Capital · Consumers</button>
+  <button class="tab" role="tab" aria-selected="false" data-t="digital"><i>2</i>Digital Economy</button>
+  <button class="tab" role="tab" aria-selected="false" data-t="telecom"><i>3</i>Telecom Players</button>
+  <button class="tab" role="tab" aria-selected="false" data-t="model"><i>4</i>Class Model</button>
+</div></nav>
+<main>
+
+<!-- ============ TAB 1 ============ -->
+<section class="panel active" id="ai">
+  <div class="sec"><span class="no">01</span><h2>Brief</h2><span class="tl">the five numbers</span></div>
+  <div class="grid g4">
+    <div class="stat hero"><div class="n">499M</div><div class="l">AI-native app users, June 2026</div><div class="s">+85% YoY, deduplicated (QuestMobile)</div></div>
+    <div class="stat hero"><div class="n">~$74B</div><div class="l">DeepSeek round target valuation</div><div class="s">reported; ~$15B raised in round two</div></div>
+    <div class="stat hero"><div class="n">~$50B</div><div class="l">Moonshot IPO target</div><div class="s">confidential HK filing, 3 Sep</div></div>
+    <div class="stat hero"><div class="n"><span class="fx" data-b="932"></span></div><div class="l">China AI capex, 2026e</div><div class="s">+103% YoY, derived from RMB 932B</div></div>
+  </div>
+
+  <div class="sec"><span class="no">02</span><h2>Top model companies</h2><span class="tl">flagships, Jul–Oct 2026</span></div>
+  <p class="lede">Mostly open-weight MoE models with ~1M-token context and API prices well below US frontier models.</p>
+  <div class="grid g3">
+    <div class="card"><span class="tag pre">Private · STAR IPO prep</span><h3>DeepSeek</h3>
+      <p>Hangzhou; spun out of High-Flyer. MIT-licensed weights. R2 reasoning model still unreleased.</p>
+      <div class="kv"><span>Latest</span><b>V4.1-Flash (10 Sep), 552B MoE</b></div>
+      <div class="kv"><span>Also</span><b>V4-Pro 1.6T / 49B active (Apr)</b></div>
+      <div class="kv"><span>Revenue</span><b>~$1B annualized <span class="tag est">reported</span></b></div></div>
+    <div class="card"><span class="tag">Alibaba</span><h3>Qwen (Tongyi)</h3>
+      <p>Strongest distribution: Alibaba Cloud, Taobao, Alipay, Ele.me, Fliggy. Top China-model token share on OpenRouter in Q2.</p>
+      <div class="kv"><span>Latest</span><b>Qwen3.8 Max, 2.4T / 95B active (3 Aug)</b></div>
+      <div class="kv"><span>Open</span><b>Qwen3.8-27B, Apache 2.0</b></div>
+      <div class="kv"><span>OpenRouter share</span><b>13.9% (Q2)</b></div></div>
+    <div class="card"><span class="tag pre">Private · HK IPO filed</span><h3>Moonshot AI (Kimi)</h3>
+      <p>Long-context, agentic coding, multi-agent "swarms". Alibaba is the largest outside holder (~36%).</p>
+      <div class="kv"><span>Latest</span><b>Kimi K3, 2.8T / 104B active (16 Jul)</b></div>
+      <div class="kv"><span>ARR</span><b>&gt;$300M <span class="tag est">reported</span></b></div>
+      <div class="kv"><span>Valuation</span><b>~$31.5–35B; IPO target ~$50B</b></div></div>
+    <div class="card"><span class="tag pub">HKEX · listed 8 Jan 2026</span><h3>Zhipu / Z.ai</h3>
+      <p>Tsinghua spin-out, first "Six Tiger" to list. Enterprise and government focus; API now the main growth driver.</p>
+      <div class="kv"><span>Latest</span><b>GLM-5.3, 744B / 40B active (Aug)</b></div>
+      <div class="kv"><span>Market cap</span><b>passed <span class="fx" data-h="1000"></span> on 22 Jun</b></div>
+      <div class="kv"><span>Chips</span><b>Inference on Ascend + domestic</b></div></div>
+    <div class="card"><span class="tag pub">HKEX · listed 9 Jan 2026</span><h3>MiniMax</h3>
+      <p>Consumer-first: Talkie companion app, Hailuo video. Reported 25.4% gross margin on FY2025.</p>
+      <div class="kv"><span>Latest</span><b>M3 (Jun), ~428B / 23B active</b></div>
+      <div class="kv"><span>Video</span><b>MiniMax-H3</b></div>
+      <div class="kv"><span>Backers</span><b>Alibaba, miHoYo, Tencent-linked</b></div></div>
+    <div class="card"><span class="tag">Big tech &amp; others</span><h3>ByteDance · Tencent · Baidu · Xiaomi · StepFun</h3>
+      <p><b style="color:var(--text)">ByteDance</b> Doubao/Seed, 2026 capex plan <span class="fx" data-b="200"></span>. <b style="color:var(--text)">Tencent</b> Hunyuan, Yuanbao in WeChat. <b style="color:var(--text)">Baidu</b> Ernie. <b style="color:var(--text)">Xiaomi</b> MiMo. <b style="color:var(--text)">StepFun</b> raised ~$2.5B in May ahead of a HK listing.</p></div>
+  </div>
+
+  <div class="sec"><span class="no">03</span><h2>Investors &amp; capital</h2><span class="tl">public markets opened in January</span></div>
+  <div class="tw"><table>
+    <tr><th>Company</th><th>Status</th><th>2026 capital events (reported)</th><th>Named investors</th></tr>
+    <tr><td><b>DeepSeek</b></td><td>Private → STAR IPO (filing possible late 2026, debut 2027)</td><td>June: ~$7.4B at ~$52B post-money via an LP controlled by founder Liang Wenfeng (5-yr lock-up, no voting). Round two: ~$15B reported, targeting ~$74B</td><td>CATL, Tencent, Meituan, Geely, GigaDevice; CITIC Securities, CICC among underwriters</td></tr>
+    <tr><td><b>Moonshot AI</b></td><td>Confidential HK IPO filing, 3 Sep; Q1 2027 targeted</td><td>Jan: ~$500M at ~$4.3B. Spring: ~$2B+ led by Meituan (~$20B). July: $3.5B at ~$31.5B. Pre-IPO target ~$50B; IPO seeks ~$3B+</td><td>Alibaba (~36%), Tencent, IDG, HSG (ex-Sequoia China), Meituan, China Mobile, CPE, national AI fund, SMIC Capital, Boyu, Hefei state funds</td></tr>
+    <tr><td><b>Zhipu / Z.ai</b></td><td>Listed HKEX</td><td>Jan IPO ~$558M at ~$7.1B; follow-on placements in July and September (<span class="fx" data-h="39.3"></span> in September alone)</td><td>Public investors</td></tr>
+    <tr><td><b>MiniMax</b></td><td>Listed HKEX; STAR second listing filed</td><td>Jan IPO <span class="fx" data-h="4.8"></span>; shares roughly doubled on debut</td><td>Alibaba, miHoYo, Tencent-backed entity</td></tr>
+    <tr><td><b>StepFun</b></td><td>Pre-IPO (HK)</td><td>~$2.5B raised in May</td><td>Not detailed in sources reviewed</td></tr>
+  </table></div>
+  <div class="call"><b>◈ The pattern.</b> Strategic money dominates. Alibaba, Tencent, Meituan, CATL, Geely and China Mobile all hold stakes, tying labs to cloud, delivery, battery, auto and telecom distribution as much as to venture capital.</div>
+
+  <div class="sec"><span class="no">04</span><h2>Consumers</h2><span class="tl">distribution is the moat</span></div>
+  <p class="lede">ChatGPT is not available in the mainland. Doubao rides Douyin, Yuanbao rides WeChat's 1.3B users, Qwen rides Taobao and Alipay, China Mobile's Lingxi passed 130M monthly users.</p>
+  <div class="chart"><h3>Monthly active users, AI apps in China</h3>
+    <p class="cap">Sep 2026 (Doubao, Qwen, DeepSeek) and Jun 2026 (Yuanbao) · QuestMobile · millions</p>
+    <div id="mau"></div><p class="note">Yuanbao is June data from a weaker source.</p></div>
+  <div class="grid g4" style="margin-top:12px">
+    <div class="stat"><div class="n">181M</div><div class="l">Doubao daily actives (30 Sep)</div><div class="s">vs 29M for Qwen, ~6x</div></div>
+    <div class="stat"><div class="n">132 min</div><div class="l">Doubao time per user per month</div><div class="s">72 opens; DeepSeek users 137 min</div></div>
+    <div class="stat"><div class="n">−9M</div><div class="l">Qwen MAU, Jun→Sep</div><div class="s">DeepSeek −6M; Doubao +37M</div></div>
+    <div class="stat"><div class="n">Paid tiers</div><div class="l">Doubao subscriptions</div><div class="s">free tier stays; three paid packages prepared</div></div>
+  </div>
+</section>
+
+<!-- ============ TAB 2 ============ -->
+<section class="panel" id="digital">
+  <div class="sec"><span class="no">01</span><h2>Digital economy at a glance</h2><span class="tl">official data</span></div>
+  <div class="grid g4">
+    <div class="stat hero"><div class="n"><span class="fx" data-b="49000"></span></div><div class="l">Digital economy value added, 2025</div><div class="s">~35% of GDP (National Data Administration)</div></div>
+    <div class="stat hero"><div class="n">&gt;<span class="fx" data-b="14700"></span></div><div class="l">Core digital industries, 2026e</div><div class="s">&gt;10.5% of GDP</div></div>
+    <div class="stat hero"><div class="n">89%</div><div class="l">Mobile payment adoption</div><div class="s">Global Payments Report 2026</div></div>
+    <div class="stat hero"><div class="n">1.3B</div><div class="l">WeChat monthly users</div><div class="s">messaging + payments + commerce</div></div>
+  </div>
+  <p class="note">Published GDP shares range from ~35% to ~42% depending on scope. The 15th Five-Year Plan (2026–30) makes digital empowerment of the real economy a core goal.</p>
+
+  <div class="sec"><span class="no">02</span><h2>Platform players</h2><span class="tl">where AI gets embedded</span></div>
+  <div class="tw"><table>
+    <tr><th>Player</th><th>Digital role</th><th>AI angle</th></tr>
+    <tr><td><b>Alibaba</b></td><td>Taobao/Tmall, Alipay (via Ant), Ele.me, Alibaba Cloud</td><td><span class="fx" data-b="380"></span> 3-year AI and cloud capex plan; external cloud revenue +35% latest quarter; T-Head chips: 470k shipped by Feb 2026, 60%+ to external customers; Qwen app wired into shopping and payments</td></tr>
+    <tr><td><b>Tencent</b></td><td>WeChat, WeChat Pay, gaming, Tencent Cloud</td><td>Yuanbao inside WeChat; building agent capability natively in the super-app; chip access constrained its 2025 capex</td></tr>
+    <tr><td><b>ByteDance</b></td><td>Douyin e-commerce and livestream, TikTok</td><td>Doubao books tickets through Douyin commerce; 2026 capex plan <span class="fx" data-b="200"></span>, the largest marginal driver of China AI capex</td></tr>
+    <tr><td><b>Baidu</b></td><td>Search, Apollo Go, AI Cloud</td><td>Q2 capex <span class="fx" data-b="11.4"></span> (~+200% YoY); AI cloud revenue +21%; own chips ~5% of domestic accelerators projected</td></tr>
+    <tr><td><b>PDD · JD · Meituan</b></td><td>Low-price marketplace; first-party retail and logistics; local delivery and travel</td><td>JD logistics revenue +29% YoY to <span class="fx" data-b="60.5"></span>; Meituan is lead investor in Moonshot and a DeepSeek backer</td></tr>
+    <tr><td><b>Ant · WeBank</b></td><td>Alipay and MYbank; WeChat Pay and WeBank</td><td>Ant's Afu assistant is in the top-10 AI apps; payments rails give agents a native checkout</td></tr>
+  </table></div>
+  <div class="call"><b>◈ Agentic commerce.</b> Qwen, JD's AI Shopping and Doubao now do conversational shopping, comparison and checkout inside their own ecosystems. Whoever owns payments plus an agent owns the transaction.</div>
+
+  <div class="sec"><span class="no">03</span><h2>Compute</h2><span class="tl">capex and chips</span></div>
+  <div class="grid g2">
+    <div class="chart"><h3>China AI infrastructure capex</h3><p class="cap">USD billions · Rhodium Group survey of 13 listed firms · 2026–27 projected</p><div id="capex"></div>
+      <p class="note">Roughly 15–20% of US AI investment. 2025 is implied from +103% growth in 2026.</p></div>
+    <div class="chart"><h3>Domestic AI accelerator share, 2026</h3><p class="cap">Percent · sources use different bases (revenue vs units), so they disagree</p><div id="chips"></div>
+      <p class="note">Huawei: Morgan Stanley projects 62% and ~$12B AI chip revenue. IDC units at June 2026: Huawei 28%, Nvidia 34%. Bernstein puts Nvidia near 8%.</p></div>
+  </div>
+  <div class="call catch"><b>◈ The catch.</b> Chinese hyperscalers build from a far smaller revenue base than US peers, and AI ROIC is estimated at 13–20% versus 25–50% in North America. Capex is outrunning monetization.</div>
+</section>
+
+<!-- ============ TAB 3 ============ -->
+<section class="panel" id="telecom">
+  <div class="sec"><span class="no">01</span><h2>The state-owned big three</h2><span class="tl">pipe → compute → tokens</span></div>
+  <p class="lede">Subscriber growth continues but revenue is flat to falling, so growth is shifting to cloud, data centres and AI tokens.</p>
+  <div class="grid g3">
+    <div class="card"><span class="tag">Largest operator</span><h3>China Mobile</h3>
+      <p>World's largest mobile operator. Focus: communications, computing, AI.</p>
+      <div class="kv"><span>Mobile subscribers (Sep)</span><b>1.014B</b></div>
+      <div class="kv"><span>5G subscribers</span><b>702M (69.2%)</b></div>
+      <div class="kv"><span>IoT connections</span><b>1.497B</b></div>
+      <div class="kv"><span>9M revenue</span><b><span class="fx" data-b="780.3"></span> (−1.8%)</b></div>
+      <div class="kv"><span>9M net profit</span><b><span class="fx" data-b="106.2"></span> (−7.9%)</b></div>
+      <div class="kv"><span>H1 AI services revenue</span><b><span class="fx" data-b="49.34"></span></b></div>
+      <div class="kv"><span>Lingxi AI assistant</span><b>130M+ monthly users</b></div></div>
+    <div class="card"><span class="tag">Fixed + mobile + cloud</span><h3>China Telecom</h3>
+      <p>Highest 5G penetration of the three; most vertically integrated AI offer (own TeleChat LLM).</p>
+      <div class="kv"><span>Mobile subscribers (Jun)</span><b>442.4M</b></div>
+      <div class="kv"><span>5G subscribers</span><b>322.5M (~73%)</b></div>
+      <div class="kv"><span>Wireline broadband subscribers</span><b>201.3M</b></div>
+      <div class="kv"><span>H1 revenue</span><b><span class="fx" data-b="260.471"></span></b></div>
+      <div class="kv"><span>Interim profit</span><b>−15%; dividend cut 11%</b></div>
+      <div class="kv"><span>Telecom Cloud</span><b><span class="fx" data-b="61.8"></span> (+7.8%)</b></div>
+      <div class="kv"><span>Blended ARPU (integrated)</span><b><span class="fx" data-r="128"></span>/month</b></div></div>
+    <div class="card"><span class="tag">Compute &amp; IoT heavy</span><h3>China Unicom</h3>
+      <p>Largest IoT base; positions as an aggregator of AI tokens and an operator of "high-value tokens".</p>
+      <div class="kv"><span>Total connections (Sep)</span><b>&gt;1.3B (incl. 789.7M IoT)</b></div>
+      <div class="kv"><span>5G subscribers</span><b>255.6M</b></div>
+      <div class="kv"><span>9M revenue</span><b><span class="fx" data-b="294.65"></span> (+0.6%)</b></div>
+      <div class="kv"><span>9M net profit</span><b><span class="fx" data-b="13.28"></span> (−33.6%)</b></div>
+      <div class="kv"><span>Computing revenue</span><b>+12.2% (IDC +10.4%)</b></div>
+      <div class="kv"><span>2026 capex plan</span><b><span class="fx" data-b="50"></span>, 35%+ to compute</b></div>
+      <div class="kv"><span>Cloud-AI paying users</span><b>123.5M</b></div></div>
+  </div>
+
+  <div class="sec"><span class="no">02</span><h2>Scale</h2><span class="tl">subscribers</span></div>
+  <div class="grid g2">
+    <div class="chart"><h3>5G network subscribers</h3><p class="cap">Millions · China Mobile, China Unicom Sep 2026; China Telecom Jun 2026</p><div id="g5"></div></div>
+    <div class="chart"><h3>Mobile subscribers</h3><p class="cap">Millions · China Mobile Sep 2026; China Telecom Jun 2026</p><div id="mob"></div>
+      <p class="note">China Unicom excluded: its headline connection count mixes in hundreds of millions of IoT terminals.</p></div>
+  </div>
+
+  <div class="sec"><span class="no">03</span><h2>What is changing</h2><span class="tl">the token economy</span></div>
+  <div class="grid g3">
+    <div class="card"><h3>AI token subscriptions</h3><p>Since May all three sell tokenised AI usage. China Telecom: three national tiers (consumers, developers and small businesses, ecosystem partners) bundled with TeleChat and DeepSeek. China Mobile: marketplace-style trials in several provinces. China Unicom: aggregator packages, starting in Shanghai.</p></div>
+    <div class="card"><h3>Core under pressure</h3><p>Weak consumer spending and a tax hike weigh on all three. China Mobile's Q3 profit fell 12.5%; the pivot is from "communications operator" to "technology services enterprise".</p></div>
+    <div class="card"><h3>Network base</h3><p>4.83M 5G base stations and 1.19B 5G subscribers nationally by Nov 2025 (65.3% of mobile). All three hold satellite mobile licences; MIIT is advancing 6G projects.</p></div>
+  </div>
+  <div class="call"><b>◈ The CEO line.</b> The pipe is a mature utility. The growth case is selling compute and metered AI to subscribers who already pay every month. Try it in the Class Model tab.</div>
+</section>
+
+<!-- ============ TAB 4 ============ -->
+<section class="panel" id="model">
+  <div class="sec"><span class="no">01</span><h2>Class model</h2><span class="tl">stress the numbers</span></div>
+  <p class="lede">Three live models built from the data on the other tabs. Inputs marked <span class="tag est">illustrative</span> are assumptions, not reported figures.</p>
+  <div class="grid g2">
+    <div class="sim"><h3>A · Consumer subscription revenue</h3><span class="tag est">illustrative</span>
+      <p class="note" style="margin-top:0">What if a top AI app converts its users to paid, as Doubao is preparing to?</p>
+      <label>App <select id="a_app"></select></label>
+      <label>Paid conversion <span id="a_cv_o"></span></label><input id="a_cv" type="range" min="0.5" max="15" step="0.5" value="3">
+      <label>Price per month (USD) <span id="a_pr_o"></span></label><input id="a_pr" type="range" min="1" max="20" step="0.5" value="5">
+      <div class="out"><div><div class="o" id="a_pay"></div><div class="k">paying users</div></div><div><div class="o" id="a_arr"></div><div class="k">annual revenue</div></div><div><div class="o" id="a_ds"></div><div class="k">vs DeepSeek ~$1B ARR</div></div></div></div>
+
+    <div class="sim"><h3>B · Lab valuation multiple</h3><span class="tag est">illustrative growth</span>
+      <p class="note" style="margin-top:0">Reported valuation targets against reported ARR. How fast must revenue grow to look reasonable?</p>
+      <label>Next-12-month ARR growth <span id="b_g_o"></span></label><input id="b_g" type="range" min="1" max="8" step="0.25" value="3">
+      <label>Multiple investors would accept (forward ARR) <span id="b_t_o"></span></label><input id="b_t" type="range" min="5" max="60" step="1" value="25">
+      <div class="tw" style="margin-top:14px"><table id="b_tbl"></table></div></div>
+
+    <div class="sim" style="grid-column:1/-1"><h3>C · Telco AI-token revenue</h3><span class="tag est">illustrative adoption</span>
+      <p class="note" style="margin-top:0">How much new revenue can a big-three operator add by selling metered AI to its existing subscribers?</p>
+      <div class="grid g2" style="gap:24px">
+        <div><label>Operator <select id="c_op"></select></label>
+          <label>Token plan adoption <span id="c_ad_o"></span></label><input id="c_ad" type="range" min="0.5" max="30" step="0.5" value="5">
+          <label>Added spend per adopter per month (USD) <span id="c_ar_o"></span></label><input id="c_ar" type="range" min="0.5" max="10" step="0.25" value="2"></div>
+        <div><div class="out"><div><div class="o" id="c_sub"></div><div class="k">base subscribers</div></div><div><div class="o" id="c_inc"></div><div class="k">added revenue / yr</div></div><div><div class="o" id="c_base"></div><div class="k">annualized revenue</div></div><div><div class="o" id="c_up"></div><div class="k">uplift on revenue</div></div></div>
+          <p class="note" id="c_ref"></p></div></div></div>
+  </div>
+  <div class="call catch"><b>◈ The catch.</b> Models A and C turn on conversion and price assumptions that no operator or lab has disclosed. Treat outputs as sensitivity, not forecast.</div>
+</section>
+
+</main>
+<footer>
+  <strong style="color:var(--text-2)">How these numbers are built</strong>
+  <p>Local-currency figures (RMB, HK$) are converted at the rates in the header; defaults ¥6.8 and HK$7.8 per USD, in line with conversions in the cited reports. USD figures quoted in sources are kept as reported. Tags: <em>reported</em> = press-reported, not company-confirmed; <em>illustrative</em> = assumption; "implied" and "derived" = calculated here. Annualized telecom revenue: China Mobile 9M × 4/3, China Telecom H1 × 2, China Unicom 9M × 4/3.</p>
+  <strong style="color:var(--text-2)">Sources</strong>
+  <ul>
+    <li><a href="https://www.digitalapplied.com/blog/chinese-ai-models-q2-2026-market-share-report">Digital Applied · Chinese AI models Q2 2026</a></li>
+    <li><a href="https://intuitionlabs.ai/articles/chinese-open-source-llms-2025">IntuitionLabs · Chinese open-source LLMs</a></li>
+    <li><a href="https://fourweekmba.com/ai-bytedances-doubao-hits-419m-users-daily-base-6x-qwens/">FourWeekMBA · Doubao 419M users (QuestMobile)</a></li>
+    <li><a href="https://www.secondtalent.com/resources/doubao-vs-deepseek/">Second Talent · Doubao vs DeepSeek</a></li>
+    <li><a href="https://techstartups.com/2026/09/03/chinese-ai-startup-moonshot-files-for-3-billion-hong-kong-ipo-at-50-billion-valuation/">Tech Startups · Moonshot HK IPO filing (Reuters)</a></li>
+    <li><a href="https://www.ainchina.com/blog/china-ai-ipo-gold-rush-deepseek-moonshot-capital-markets-2026/">AInChina · AI IPO rush</a></li>
+    <li><a href="https://www.recodechinaai.com/p/chinese-ai-companies-just-had-their">Recode China AI · funding payday</a></li>
+    <li><a href="https://www.dealstreetasia.com/stories/deepseek-raises-15b-from-meituan-geely-others-to-fuel-ai-race-498983">DealStreetAsia · DeepSeek $15B round</a></li>
+    <li><a href="https://www.vktr.com/ai-news/deepseek-targets-2027-shanghai-ipo-at-74b/">VKTR · DeepSeek 2027 STAR IPO</a></li>
+    <li><a href="https://govt.chinadaily.com.cn/s/202607/20/WS6a5deb0b498e36855033e469/chinas-digital-push-accelerates.html">China Daily · digital economy (NDA)</a></li>
+    <li><a href="https://www.caixinglobal.com/2026-05-20/china-leads-world-in-mobile-payment-uptake-as-asia-drives-growth-102445900.html">Caixin · Global Payments Report 2026</a></li>
+    <li><a href="https://www.pymnts.com/artificial-intelligence-2/2026/how-chinas-super-app-ecosystem-is-accelerating-ai-adoption">PYMNTS · super-app ecosystem</a></li>
+    <li><a href="https://rhg.com/research/examining-chinas-ai-financing/">Rhodium Group · China's AI financing</a></li>
+    <li><a href="https://nationalcioreview.com/?p=75709">National CIO Review · Alibaba cloud and T-Head</a></li>
+    <li><a href="https://thenextweb.com/news/china-ai-chip-asic-gpu-nvidia-export-controls">TNW · China AI chip market</a></li>
+    <li><a href="https://tech-insider.org/ca/huawei-shelves-ai-chip-exports-china-demand-2026/">Tech Insider · IDC and Bernstein chip shares</a></li>
+    <li><a href="https://telecomlead.com/?p=128254">TelecomLead · China Mobile Q3 2026</a></li>
+    <li><a href="https://telecomlead.com/?p=127733">TelecomLead · top mobile operators 2026</a></li>
+    <li><a href="https://www.thestandard.com.hk/finance/article/346918/China-Unicoms-profit-drops-336pc-for-first-three-quarters">The Standard · China Unicom nine months</a></li>
+    <li><a href="https://lightreading.com/finance/china-s-telcos-q3-earnings-drop-on-weak-demand">Light Reading · telcos' Q3 earnings</a></li>
+    <li><a href="https://www.telecomtv.com/content/ai/more-than-a-token-gesture-china-telecom-launches-ai-token-subscriptions-55494/amp/">TelecomTV · China Telecom AI tokens</a></li>
+    <li><a href="https://www.thestandard.com.hk/finance/article/340507/China-Telecom-interim-profit-down-15pc-slashes-dividend-by-11pc">The Standard · China Telecom interim</a></li>
+  </ul>
+  <p>Many private valuations and rounds are press-reported. Several secondary sources are aggregators; treat their figures as estimates.</p>
+</footer>
+<script>
+var FX=6.8, HK=7.8;
+function usd(b){var a=Math.abs(b);
+  if(a>=1000)return '$'+(b/1000).toFixed(2)+'T';
+  if(a>=100)return '$'+b.toFixed(0)+'B';
+  if(a>=10)return '$'+b.toFixed(1)+'B';
+  if(a>=1)return '$'+b.toFixed(2)+'B';
+  return '$'+(b*1000).toFixed(0)+'M';}
+function $(id){return document.getElementById(id)}
+function bars(id,rows,fmt){
+  var max=Math.max.apply(null,rows.map(function(r){return r[1]}));
+  $(id).innerHTML=rows.map(function(r){var t=fmt(r[1]);
+    return '<div class="bar-row" title="'+r[0]+': '+t+'"><span class="name">'+r[0]+'</span><div class="track"><div class="fill" style="width:'+(r[1]/max*100).toFixed(1)+'%"></div></div><span class="val">'+t+'</span></div>';}).join('');}
+var M=function(v){return v.toLocaleString(undefined,{maximumFractionDigits:1})+'M'};
+var P=function(v){return v+'%'};
+
+// Class-model data
+var APPS=[['Doubao (ByteDance)',419.1],['Qwen (Alibaba)',158.2],['DeepSeek',122.7],['Yuanbao (Tencent)',49.8]];
+var OPS=[ // name, base subscribers (M), annualized revenue (RMB B), reference
+ ['China Mobile · mobile subscribers',1014,780.3*4/3,'9M revenue −1.8% YoY; adding ~9M mobile subscribers YTD.'],
+ ['China Telecom · mobile subscribers',442.4,260.471*2,'Interim profit −15%; token plans already live nationally in three tiers.'],
+ ['China Unicom · 5G subscribers',255.6,294.65*4/3,'9M revenue +0.6%, profit −33.6%; base here is 5G subscribers only.']];
+var LABS=[['DeepSeek',74,1.0],['Moonshot AI',50,0.3]];
+
+function render(){
+  document.querySelectorAll('.fx').forEach(function(e){
+    if(e.dataset.b)e.textContent=usd(+e.dataset.b/FX);
+    else if(e.dataset.h)e.textContent=usd(+e.dataset.h/HK);
+    else if(e.dataset.r)e.textContent='$'+(+e.dataset.r/FX).toFixed(1);});
+  bars('mau',[['Doubao (ByteDance)',419.1],['Qwen (Alibaba)',158.2],['DeepSeek',122.7],['Yuanbao (Tencent)*',49.8]],M);
+  bars('capex',[['2025 (implied)',932/2.03/FX],['2026e',932/FX],['2027e',1200/FX]],function(v){return '$'+v.toFixed(0)+'B'});
+  bars('chips',[['Huawei · MS proj.',62],['Cambricon · proj.',14],['Huawei · IDC units',28],['Nvidia · IDC units',34],['Nvidia · Bernstein',8]],P);
+  bars('g5',[['China Mobile',702],['China Telecom',322.5],['China Unicom',255.6]],M);
+  bars('mob',[['China Mobile',1014],['China Telecom',442.4]],M);
+  simA();simB();simC();}
+function simA(){
+  var a=APPS[$('a_app').value],cv=+$('a_cv').value,pr=+$('a_pr').value;
+  $('a_cv_o').textContent=cv+'%';$('a_pr_o').textContent='$'+pr.toFixed(2);
+  var pay=a[1]*cv/100, arr=pay*pr*12/1000;
+  $('a_pay').textContent=pay.toFixed(1)+'M';$('a_arr').textContent=usd(arr);$('a_ds').textContent=(arr/1.0).toFixed(1)+'x';}
+function simB(){
+  var g=+$('b_g').value,t=+$('b_t').value;
+  $('b_g_o').textContent=g+'x';$('b_t_o').textContent=t+'x';
+  var h='<tr><th>Lab</th><th>Valuation</th><th>ARR now</th><th>Forward multiple</th><th>ARR needed at target</th></tr>';
+  LABS.forEach(function(l){var f=l[1]/(l[2]*g), need=l[1]/t;
+    h+='<tr><td><b>'+l[0]+'</b></td><td>'+usd(l[1])+'</td><td>'+usd(l[2])+'</td><td>'+f.toFixed(0)+'x</td><td>'+usd(need)+' ('+(need/l[2]).toFixed(1)+'x today)</td></tr>';});
+  $('b_tbl').innerHTML=h;}
+function simC(){
+  var o=OPS[$('c_op').value],ad=+$('c_ad').value,ar=+$('c_ar').value;
+  $('c_ad_o').textContent=ad+'%';$('c_ar_o').textContent='$'+ar.toFixed(2);
+  var inc=o[1]*ad/100*ar*12/1000, base=o[2]/FX;
+  $('c_sub').textContent=(o[1]>=1000?(o[1]/1000).toFixed(2)+'B':o[1].toFixed(0)+'M');
+  $('c_inc').textContent=usd(inc);$('c_base').textContent=usd(base);
+  $('c_up').textContent=(inc/base*100).toFixed(1)+'%';$('c_ref').textContent=o[3];}
+
+APPS.forEach(function(a,i){$('a_app').add(new Option(a[0]+' · '+a[1]+'M MAU',i))});
+OPS.forEach(function(o,i){$('c_op').add(new Option(o[0],i))});
+['a_app','a_cv','a_pr','b_g','b_t','c_op','c_ad','c_ar'].forEach(function(id){$(id).addEventListener('input',function(){simA();simB();simC()})});
+$('fx').addEventListener('input',function(){FX=+this.value||6.8;render()});
+$('hk').addEventListener('input',function(){HK=+this.value||7.8;render()});
+$('theme').addEventListener('click',function(){
+  var d=document.documentElement,l=d.dataset.theme==='dark';
+  d.dataset.theme=l?'light':'dark';this.textContent=l?'☾ Dark mode':'☀ Light mode';});
+var tabs=document.querySelectorAll('.tab');
+function show(t){
+  tabs.forEach(function(b){b.setAttribute('aria-selected',b.dataset.t===t)});
+  document.querySelectorAll('.panel').forEach(function(p){p.classList.toggle('active',p.id===t)});
+  try{history.replaceState(null,'','#'+t)}catch(e){}}
+tabs.forEach(function(b){b.addEventListener('click',function(){show(b.dataset.t)})});
+render();
+var h=location.hash.slice(1);if(['ai','digital','telecom','model'].indexOf(h)>-1)show(h);
+</script>
+</body>
+</html>
