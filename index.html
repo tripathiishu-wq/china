@@ -99,6 +99,7 @@ footer ul{columns:2;column-gap:32px;padding-left:18px}
     <div class="ctl">
       <span>FX: ¥ per $</span><input id="fx" type="number" step="0.05" value="6.8" aria-label="RMB per USD">
       <span>HK$ per $</span><input id="hk" type="number" step="0.05" value="7.8" aria-label="HKD per USD">
+      <span>₹ per $</span><input id="inr" type="number" step="0.5" value="90" aria-label="INR per USD" title="Assumption: set to current rate">
       <button class="btn" id="theme">☀ Light mode</button></div></div>
   <div class="eyebrow">Market map · All figures in USD · Updated 14 Nov 2026</div>
   <h1>Who builds, funds, uses and <em>carries</em> China's AI.</h1>
@@ -108,7 +109,8 @@ footer ul{columns:2;column-gap:32px;padding-left:18px}
   <button class="tab" role="tab" aria-selected="true" data-t="ai"><i>1</i>Models · Capital · Consumers</button>
   <button class="tab" role="tab" aria-selected="false" data-t="digital"><i>2</i>Digital Economy</button>
   <button class="tab" role="tab" aria-selected="false" data-t="telecom"><i>3</i>Telecom Players</button>
-  <button class="tab" role="tab" aria-selected="false" data-t="model"><i>4</i>Class Model</button>
+  <button class="tab" role="tab" aria-selected="false" data-t="asia"><i>4</i>Asia</button>
+  <button class="tab" role="tab" aria-selected="false" data-t="model"><i>5</i>Class Model</button>
 </div></nav>
 <main>
 
@@ -261,6 +263,104 @@ footer ul{columns:2;column-gap:32px;padding-left:18px}
   <div class="call"><b>◈ The CEO line.</b> The pipe is a mature utility. The growth case is selling compute and metered AI to subscribers who already pay every month. Try it in the Class Model tab.</div>
 </section>
 
+<!-- ============ TAB ASIA ============ -->
+<section class="panel" id="asia">
+  <div class="sec"><span class="no">01</span><h2>Brief</h2><span class="tl">Asia beyond China</span></div>
+  <p class="lede">India, Japan, South Korea, Taiwan and Southeast Asia. None has a DeepSeek-scale lab; each is betting on sovereign models, state money, or owning the chip and network layers.</p>
+  <div class="grid g4">
+    <div class="stat hero"><div class="n">$368B</div><div class="l">Southeast Asia digital economy GMV, 2026</div><div class="s">+17% YoY; &gt;$1T by 2035 (Google, Temasek, Bain)</div></div>
+    <div class="stat hero"><div class="n">$6.3B</div><div class="l">Japan sovereign AI funding</div><div class="s">~¥1T over five years from FY2026</div></div>
+    <div class="stat hero"><div class="n">$52–56B</div><div class="l">TSMC 2026 capex guidance</div><div class="s">later reported raised to ~$64B</div></div>
+    <div class="stat hero"><div class="n"><span class="fx" data-i="301.88"></span></div><div class="l">Jio Platforms IPO, 28 Oct</div><div class="s">₹30,188 crore; largest in India's history</div></div>
+  </div>
+
+  <div class="sec"><span class="no">02</span><h2>Model companies by country</h2><span class="tl">sovereign-model race</span></div>
+  <div class="grid g3">
+    <div class="card"><span class="tag">India · IndiaAI Mission</span><h3>Sarvam AI</h3>
+      <p>Bengaluru lab picked by the government in April 2025 to build India's first sovereign LLM. Open Apache 2.0 weights, 22+ Indian languages.</p>
+      <div class="kv"><span>Models</span><b>Sarvam-30B, Sarvam-105B (Feb)</b></div>
+      <div class="kv"><span>Funding</span><b>$350M at ~$1.55B <span class="tag est">reported</span></b></div>
+      <div class="kv"><span>Backers</span><b>Lightspeed, Peak XV, Khosla, HCLTech</b></div>
+      <div class="kv"><span>Compute</span><b>4,096 H100s via the Mission</b></div></div>
+    <div class="card"><span class="tag">India · other labs</span><h3>BharatGen · Gnani.ai · Krutrim</h3>
+      <p>BharatGen (IIT Bombay-led) is the largest single Mission beneficiary at ₹900 crore. Gnani.ai builds the Vachana voice stack. Krutrim, India's first AI unicorn, shut its Kruti assistant in April 2026 and reportedly halted Krutrim 3.</p>
+      <div class="kv"><span>Mission size</span><b>₹10,372 crore (~$1.25B)</b></div>
+      <div class="kv"><span>Labs funded</span><b>12 under IndiaAI</b></div>
+      <div class="kv"><span>AI-native companies</span><b>1,700+, ~$5.5B raised</b></div></div>
+    <div class="card"><span class="tag">Japan · state-backed</span><h3>SoftBank · NEC · Honda · Sony consortium</h3>
+      <p>A SoftBank-led new company building a trillion-parameter physical-AI model for robots, trained on Japanese data kept in Japan. METI/NEDO picked SoftBank-backed Noetra and AIST for the fiscal-2026 tranche.</p>
+      <div class="kv"><span>Public funding</span><b>~$6.3B over 5 years</b></div>
+      <div class="kv"><span>FY2026 budget</span><b>¥387.3B (~$2.4B, derived)</b></div>
+      <div class="kv"><span>Others</span><b>NTT tsuzumi, NEC cotomi</b></div></div>
+    <div class="card"><span class="tag pre">Japan · private</span><h3>Sakana AI · Preferred Networks</h3>
+      <p>Sakana raised a ¥20B ($135M) Series B at ~$2.65B post-money, a record for an unlisted Japanese startup. Preferred Networks runs its own silicon, compute and models.</p>
+      <div class="kv"><span>Sakana backers</span><b>NVIDIA, Khosla, MUFG, NEA, Lux, In-Q-Tel</b></div>
+      <div class="kv"><span>Compute help</span><b>METI free GPU access</b></div></div>
+    <div class="card"><span class="tag">South Korea · national contest</span><h3>LG Exaone · SK Telecom A.X · Upstage · Motif</h3>
+      <p>Government pledged ₩530B (~$390M) to five teams; Naver and NC AI were cut in January. SKT's A.X K1 is Korea's first model above 500B parameters, with a defense MOU signed in May. A final evaluation was due August 2026; outcome not confirmed in sources.</p>
+      <div class="kv"><span>Leader</span><b>LG K-EXAONE, 236B open weights</b></div>
+      <div class="kv"><span>Challenger</span><b>Upstage Solar Open, 100B</b></div></div>
+    <div class="card"><span class="tag">Southeast Asia</span><h3>AI Singapore · SEA-LION</h3>
+      <p>Open-source LLM trained on South-East Asian languages. Singapore leads regional adoption: 70% of its working population are GenAI users, almost all in English.</p>
+      <div class="kv"><span>Regional GenAI users</span><b>243M (58% of working pop., SEA-6)</b></div>
+      <div class="kv"><span>AI share of H1 funding</span><b>~80% by value</b></div></div>
+  </div>
+
+  <div class="sec"><span class="no">03</span><h2>Investors &amp; capital</h2><span class="tl">state first, strategics second</span></div>
+  <div class="grid g2">
+    <div class="chart"><h3>Government sovereign-AI commitments</h3><p class="cap">USD billions · as reported</p><div id="gov"></div>
+      <p class="note">Programmes differ in scope and period: Japan is five years, India's Mission is a five-year budget, Korea's is the first-phase award. Not like-for-like.</p></div>
+    <div class="card"><h3>Who is writing the cheques</h3>
+      <div class="kv"><span>India</span><b>VCs (Lightspeed, Peak XV, Khosla), corporates (HCLTech), state GPUs</b></div>
+      <div class="kv"><span>Japan</span><b>SoftBank, megabanks, 30+ corporates; Toshiba, Hitachi, KDDI Research reported to join</b></div>
+      <div class="kv"><span>Korea</span><b>Conglomerates (LG, SK) plus ministry funding</b></div>
+      <div class="kv"><span>SE Asia</span><b>$21B H1 2026 digital funding vs $11B in all of 2025; IPO proceeds $8.5B (12 months to June)</b></div>
+      <div class="kv"><span>Abroad</span><b>SoftBank led OpenAI's $40B 2025 round, even while anchoring a domestic model</b></div></div>
+  </div>
+  <div class="call catch"><b>◈ The catch.</b> SoftBank is both the largest private funder of a US frontier lab and the anchor of Japan's "independent" sovereign model. Funding is local; dependence on US chips and clouds is not.</div>
+
+  <div class="sec"><span class="no">04</span><h2>Compute &amp; chips</h2><span class="tl">Asia owns the supply chain</span></div>
+  <div class="grid g4">
+    <div class="stat"><div class="n">$35.9B</div><div class="l">TSMC Q1 2026 revenue</div><div class="s">+40.6% YoY; HPC/AI ~61% of revenue</div></div>
+    <div class="stat"><div class="n">&gt;40%</div><div class="l">Foxconn share of global AI servers</div><div class="s">Taiwan integrated AI server chain</div></div>
+    <div class="stat"><div class="n">Sold out</div><div class="l">SK Hynix HBM for 2026</div><div class="s">Samsung and SK Hynix net income up ~490% and ~400% YoY</div></div>
+    <div class="stat"><div class="n">$100B</div><div class="l">TSMC extra US investment</div><div class="s">reported alongside capex increase</div></div>
+  </div>
+
+  <div class="sec"><span class="no">05</span><h2>Digital economy</h2><span class="tl">consumers and platforms</span></div>
+  <div class="grid g4">
+    <div class="stat"><div class="n">$226B</div><div class="l">SEA e-commerce GMV, 2026</div><div class="s">+18%</div></div>
+    <div class="stat"><div class="n">$31B</div><div class="l">Singapore digital GMV, 2026</div><div class="s">+8%; $59B by 2035</div></div>
+    <div class="stat"><div class="n">1,700+</div><div class="l">India AI-native companies</div><div class="s">~$5.5B equity raised</div></div>
+    <div class="stat"><div class="n">Nov 2026</div><div class="l">ASEAN DEFA</div><div class="s">first region-wide digital trade pact</div></div>
+  </div>
+  <p class="note">Roughly six in ten SEA executives report under 5% earnings impact from AI, and 18% see none (McKinsey / Singapore EDB survey, Feb 2026).</p>
+
+  <div class="sec"><span class="no">06</span><h2>Telecom players</h2><span class="tl">India, Japan, Korea</span></div>
+  <div class="grid g3">
+    <div class="card"><span class="tag pub">Listed 28 Oct 2026</span><h3>Jio Platforms</h3>
+      <p>Largest IPO in India's history. Pivoting from adding subscribers to earning more per subscriber via digital services and enterprise.</p>
+      <div class="kv"><span>Subscribers</span><b>542.4M (+9.1M in Q2)</b></div>
+      <div class="kv"><span>5G subscribers</span><b>300M+</b></div>
+      <div class="kv"><span>Fixed broadband</span><b>30M+ (AirFiber 15.1M)</b></div>
+      <div class="kv"><span>Q2 operating revenue</span><b><span class="fx" data-i="404.75"></span> (+11.4%)</b></div>
+      <div class="kv"><span>Q2 net profit</span><b><span class="fx" data-i="83.87"></span> (+13.7%)</b></div>
+      <div class="kv"><span>EBITDA margin</span><b>54.1%</b></div>
+      <div class="kv"><span>ARPU</span><b><span class="fx" data-ir="218.8"></span>/month</b></div></div>
+    <div class="card"><span class="tag">India</span><h3>Bharti Airtel · Vodafone Idea</h3>
+      <p>Airtel leads on ARPU. Neoclouds (Yotta, NxtGen, NeevCloud, E2E) reached the GPU-rental market before the telcos did.</p>
+      <div class="kv"><span>Airtel customers</span><b>~680.9M</b></div>
+      <div class="kv"><span>Vodafone Idea</span><b>~193.1M</b></div>
+      <div class="kv"><span>Jio churn</span><b>1.6% monthly</b></div></div>
+    <div class="card"><span class="tag">Japan · Korea</span><h3>SoftBank · NTT · KDDI · SK Telecom</h3>
+      <p>KDDI, Sakura Internet and Highreso formed the Japan GPU Alliance; NTT's IOWN photonic network targets AI latency; SoftBank is deploying Oracle Alloy in Japan. SK Telecom runs a national foundation-model contender and sells it into defense.</p>
+      <div class="kv"><span>KDDI</span><b>GPU subsidy ~¥10.2B (METI)</b></div>
+      <div class="kv"><span>Sakura Internet</span><b>GPU subsidy ~¥50.1B</b></div></div>
+  </div>
+  <div class="chart" style="margin-top:12px"><h3>Mobile subscribers across Asia's big operators</h3><p class="cap">Millions · latest reported · Airtel and Jio include fixed or non-mobile in some reports</p><div id="asiasub"></div></div>
+  <div class="call"><b>◈ The CEO line.</b> India's operators still grow subscribers and ARPU; China's are flat to falling. The token and compute play matters most where connectivity growth has stalled, yet India's neoclouds got to GPU rental first.</div>
+</section>
+
 <!-- ============ TAB 4 ============ -->
 <section class="panel" id="model">
   <div class="sec"><span class="no">01</span><h2>Class model</h2><span class="tl">stress the numbers</span></div>
@@ -294,7 +394,7 @@ footer ul{columns:2;column-gap:32px;padding-left:18px}
 </main>
 <footer>
   <strong style="color:var(--text-2)">How these numbers are built</strong>
-  <p>Local-currency figures (RMB, HK$) are converted at the rates in the header; defaults ¥6.8 and HK$7.8 per USD, in line with conversions in the cited reports. USD figures quoted in sources are kept as reported. Tags: <em>reported</em> = press-reported, not company-confirmed; <em>illustrative</em> = assumption; "implied" and "derived" = calculated here. Annualized telecom revenue: China Mobile 9M × 4/3, China Telecom H1 × 2, China Unicom 9M × 4/3.</p>
+  <p>Local-currency figures (RMB, HK$) are converted at the rates in the header; defaults ¥6.8 and HK$7.8 per USD, in line with conversions in the cited reports. The ₹90 per USD default is an assumption, not sourced: set it to today's rate. Japan and Korea programme sizes are USD as reported by the cited sources (¥1T ≈ $6.3B; ₩530B ≈ $390M). USD figures quoted in sources are kept as reported. Tags: <em>reported</em> = press-reported, not company-confirmed; <em>illustrative</em> = assumption; "implied" and "derived" = calculated here. Annualized telecom revenue: China Mobile 9M × 4/3, China Telecom H1 × 2, China Unicom 9M × 4/3.</p>
   <strong style="color:var(--text-2)">Sources</strong>
   <ul>
     <li><a href="https://www.digitalapplied.com/blog/chinese-ai-models-q2-2026-market-share-report">Digital Applied · Chinese AI models Q2 2026</a></li>
@@ -319,11 +419,28 @@ footer ul{columns:2;column-gap:32px;padding-left:18px}
     <li><a href="https://lightreading.com/finance/china-s-telcos-q3-earnings-drop-on-weak-demand">Light Reading · telcos' Q3 earnings</a></li>
     <li><a href="https://www.telecomtv.com/content/ai/more-than-a-token-gesture-china-telecom-launches-ai-token-subscriptions-55494/amp/">TelecomTV · China Telecom AI tokens</a></li>
     <li><a href="https://www.thestandard.com.hk/finance/article/340507/China-Telecom-interim-profit-down-15pc-slashes-dividend-by-11pc">The Standard · China Telecom interim</a></li>
+    <li><a href="https://india.entrepreneur.com/?p=94098">Entrepreneur India · AI-native startup funding</a></li>
+    <li><a href="https://neuronfeed.com/country/india">NeuronFeed · India AI (Sarvam round, IndiaAI budget)</a></li>
+    <li><a href="https://www.freepressjournal.in/tech/ai-summit-2026-meet-the-3-sovereign-ai-llm-models-that-were-unveiled-in-delhi-to-rival-global-tech-giants">Free Press Journal · India sovereign models</a></li>
+    <li><a href="https://techmitra.in/india-indigenous-ai-model/">TechMitra · Krutrim and Sarvam update</a></li>
+    <li><a href="https://neuronfeed.com/country/japan">NeuronFeed · Japan AI (Sakana, METI)</a></li>
+    <li><a href="https://www.digitimes.com/news/a20260415VL204.html?chid=12">Digitimes · Japan ¥1T AI funding</a></li>
+    <li><a href="https://siliconangle.com/2026/04/13/japanese-tech-giants-launch-joint-venture-targeting-physical-ai-robots-machines/">SiliconANGLE · Japan physical-AI venture</a></li>
+    <li><a href="https://letsdatascience.com/news/japan-funds-domestic-foundation-model-and-ai-compute-bf225f83">Let's Data Science · METI Noetra and GPU subsidies</a></li>
+    <li><a href="https://tecknexus.com/south-korea-sovereign-ai-strategy/">TeckNexus · Korea sovereign AI</a></li>
+    <li><a href="https://www.mlex.com/mlex/articles/2431019">MLex · Korea shortlists LG, SKT, Upstage</a></li>
+    <li><a href="https://letsdatascience.com/news/ai-model-rivalry-expands-into-defense-sector-df66b7a1">Let's Data Science · SKT A.X K1 defense MOU</a></li>
+    <li><a href="https://www.psuconnect.in/financial/jio-platforms-q2-revenue-47485-cr-11-3-pat-8-387-cr">PSU Connect · Jio Platforms Q2 FY27</a></li>
+    <li><a href="https://www.communicationstoday.co.in/?p=427149">Communications Today · Jio IPO and subscribers</a></li>
+    <li><a href="https://www.temasek.com.sg/en/news-and-resources/news-room/news/2026/southeast-asia-digital-economy-set-for-368b-gmv-in-2026-tracking-to-1t-by-2035">Temasek · e-Conomy SEA 2026</a></li>
+    <li><a href="https://www.nst.com.my/amp/business/corporate/2026/10/1560402/southeast-asia-digital-sales-set-rise-17pct-2026">Reuters via NST · SEA digital sales</a></li>
+    <li><a href="https://scmp.com/tech/big-tech/article/3350346/tsmc-targets-over-30-revenue-surge-2026-ramps-capex-amid-booming-ai-demand">SCMP · TSMC 2026 outlook</a></li>
+    <li><a href="https://news.tvbs.com.tw/english/3176594">TVBS · Taiwan AI supply chain</a></li>
   </ul>
   <p>Many private valuations and rounds are press-reported. Several secondary sources are aggregators; treat their figures as estimates.</p>
 </footer>
 <script>
-var FX=6.8, HK=7.8;
+var FX=6.8, HK=7.8, INR=90;
 function usd(b){var a=Math.abs(b);
   if(a>=1000)return '$'+(b/1000).toFixed(2)+'T';
   if(a>=100)return '$'+b.toFixed(0)+'B';
@@ -343,14 +460,19 @@ var APPS=[['Doubao (ByteDance)',419.1],['Qwen (Alibaba)',158.2],['DeepSeek',122.
 var OPS=[ // name, base subscribers (M), annualized revenue (RMB B), reference
  ['China Mobile · mobile subscribers',1014,780.3*4/3,'9M revenue −1.8% YoY; adding ~9M mobile subscribers YTD.'],
  ['China Telecom · mobile subscribers',442.4,260.471*2,'Interim profit −15%; token plans already live nationally in three tiers.'],
- ['China Unicom · 5G subscribers',255.6,294.65*4/3,'9M revenue +0.6%, profit −33.6%; base here is 5G subscribers only.']];
+ ['China Unicom · 5G subscribers',255.6,294.65*4/3,'9M revenue +0.6%, profit −33.6%; base here is 5G subscribers only.'],
+ ['Reliance Jio · all subscribers',542.4,404.75*4,'Q2 revenue +11.4% YoY, ARPU up; revenue annualized from Q2 and converted at the ₹ rate (assumption).','INR']];
 var LABS=[['DeepSeek',74,1.0],['Moonshot AI',50,0.3]];
 
 function render(){
   document.querySelectorAll('.fx').forEach(function(e){
     if(e.dataset.b)e.textContent=usd(+e.dataset.b/FX);
     else if(e.dataset.h)e.textContent=usd(+e.dataset.h/HK);
+    else if(e.dataset.i)e.textContent=usd(+e.dataset.i/INR);
+    else if(e.dataset.ir)e.textContent='$'+(+e.dataset.ir/INR).toFixed(2);
     else if(e.dataset.r)e.textContent='$'+(+e.dataset.r/FX).toFixed(1);});
+  bars('gov',[['Japan (5-yr)',6.3],['India (IndiaAI)',1.25],['Korea (phase 1)',0.39]],function(v){return '$'+v+'B'});
+  bars('asiasub',[['China Mobile',1014],['Bharti Airtel',680.9],['Reliance Jio',542.4],['China Telecom',442.4],['Vodafone Idea',193.1]],M);
   bars('mau',[['Doubao (ByteDance)',419.1],['Qwen (Alibaba)',158.2],['DeepSeek',122.7],['Yuanbao (Tencent)*',49.8]],M);
   bars('capex',[['2025 (implied)',932/2.03/FX],['2026e',932/FX],['2027e',1200/FX]],function(v){return '$'+v.toFixed(0)+'B'});
   bars('chips',[['Huawei · MS proj.',62],['Cambricon · proj.',14],['Huawei · IDC units',28],['Nvidia · IDC units',34],['Nvidia · Bernstein',8]],P);
@@ -372,7 +494,7 @@ function simB(){
 function simC(){
   var o=OPS[$('c_op').value],ad=+$('c_ad').value,ar=+$('c_ar').value;
   $('c_ad_o').textContent=ad+'%';$('c_ar_o').textContent='$'+ar.toFixed(2);
-  var inc=o[1]*ad/100*ar*12/1000, base=o[2]/FX;
+  var inc=o[1]*ad/100*ar*12/1000, base=o[2]/(o[4]==='INR'?INR:FX);
   $('c_sub').textContent=(o[1]>=1000?(o[1]/1000).toFixed(2)+'B':o[1].toFixed(0)+'M');
   $('c_inc').textContent=usd(inc);$('c_base').textContent=usd(base);
   $('c_up').textContent=(inc/base*100).toFixed(1)+'%';$('c_ref').textContent=o[3];}
@@ -382,6 +504,7 @@ OPS.forEach(function(o,i){$('c_op').add(new Option(o[0],i))});
 ['a_app','a_cv','a_pr','b_g','b_t','c_op','c_ad','c_ar'].forEach(function(id){$(id).addEventListener('input',function(){simA();simB();simC()})});
 $('fx').addEventListener('input',function(){FX=+this.value||6.8;render()});
 $('hk').addEventListener('input',function(){HK=+this.value||7.8;render()});
+$('inr').addEventListener('input',function(){INR=+this.value||90;render()});
 $('theme').addEventListener('click',function(){
   var d=document.documentElement,l=d.dataset.theme==='dark';
   d.dataset.theme=l?'light':'dark';this.textContent=l?'☾ Dark mode':'☀ Light mode';});
@@ -392,7 +515,7 @@ function show(t){
   try{history.replaceState(null,'','#'+t)}catch(e){}}
 tabs.forEach(function(b){b.addEventListener('click',function(){show(b.dataset.t)})});
 render();
-var h=location.hash.slice(1);if(['ai','digital','telecom','model'].indexOf(h)>-1)show(h);
+var h=location.hash.slice(1);if(['ai','digital','telecom','asia','model'].indexOf(h)>-1)show(h);
 </script>
 </body>
 </html>
